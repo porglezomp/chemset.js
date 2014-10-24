@@ -27,46 +27,58 @@ or_elements = "|".join(elements)
 match_elements = "(" + or_elements + ")"
 
 # Match the charge: H+, OH-, SO4 2+, etc.
-match_charge = r"((\d+)?(\+|-))"
+match_charge = r"(\d*[+-])"
 # Match the state: (s), (l), (g), (aq)
 match_state = r"(\((s|l|g|aq)\))"
 
-# Match the charge and state in either order,
-# or allow people to omit them entirely.
-# Note: This mistakenly accepts charge-state-charge,
-# it's the parser's job to catch this
-match_suffix = r"( ?({state}? ?{charge}??)|({charge}? ?{state}?))".format(
+# Match the charge and/or state together
+# If both are specified, charge must come first
+# If there's no (state), the following fallback rules apply:
+# If the charge is simply a + or -,  there must be no space, but if there's
+# a number (2+, 3-, etc) then there must be a space
+match_suffix = r"( ?{charge}? ?{state}| \d+[+-]|[+-]?)".format(
     charge=match_charge,
     state=match_state
 )
 
 # Match a token, which is an element and a subscript,
 # for example: H2, O2, Na, C6, etc.
-match_token = r"({elements}(\d+)?)".format(
+match_token = r"({elements}\d*)".format(
     elements=match_elements
 )
-# Match a group of tokens (parenthesis around a part).
+# The same as match token, but require a subscript,
+# this allows us to prevent the capture of single elements on
+# their own
+match_token_num = r"({elements}\d+)".format(
+    elements=match_elements
+)
+
+# Match a group of tokens (parenthesis around a part),
+# and then an optional subscript
 # Note: This will accept malformed strings like:
-# ((((OH)2, it's the parser's job to catch this
-match_group = r"(\((({or_elements}(\d+)?)|\(|\)(\d+)?)\)(\d+)?)".format(
+# ((((OH)2, it's the parser's job to reject this
+match_group = r"(\(({or_elements}\d*|\(|\)\d*)\)\d*)".format(
     or_elements=or_elements
 )
 
 # Match a single ion or molecule,
 # for example: H2SO4, CO2, H2O, etc.
-match_formula = (r"(\d*({token}+|{token}*{group}{token}*){suffix})").format(
+match_formula = (r"(\d*(({token}+)|({token}*){group}({token}*)" +
+                 r"){suffix})").format(
+# ({numbered_token}+[+-])
+    numbered_token=match_token_num,
     token=match_token,
     suffix=match_suffix,
     group=match_group
 )
 
 # Match some number of formulas, seperated by +
-match_formulas = r"({formula}( ??\+ ??{formula})*)".format(
+match_formulas = r"(?:{formula}( ??\+ ??{formula})*)".format(
     formula=match_formula
 )
 
 # Match chemicals and chemical equations
-regex = r"/{formulas}( ??-+> ??{formulas})?/g".format(
+regex = r"/({formulas}(?: ??-+> ??{formulas})?)/g".format(
     formulas=match_formulas
 )
 
