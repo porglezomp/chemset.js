@@ -2,15 +2,84 @@
 chemRegex = /((?:(\d*((((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)+)|(((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)*)(\((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr\d*|\(|\)\d*)\)\d*)(((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)*))( ?(\d*[+-])? ?(\((s|l|g|aq)\))| \d+[+-]|[+-]?))( ??\+ ??(\d*((((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)+)|(((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)*)(\((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr\d*|\(|\)\d*)\)\d*)(((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)*))( ?(\d*[+-])? ?(\((s|l|g|aq)\))| \d+[+-]|[+-]?)))*)(?: ??-+> ??(?:(\d*((((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)+)|(((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)*)(\((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr\d*|\(|\)\d*)\)\d*)(((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)*))( ?(\d*[+-])? ?(\((s|l|g|aq)\))| \d+[+-]|[+-]?))( ??\+ ??(\d*((((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)+)|(((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)*)(\((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr\d*|\(|\)\d*)\)\d*)(((Ac|Ag|Al|Am|Ar|As|At|Au|Ba|Be|Bh|Bi|Bk|Br|B|Ca|Cd|Ce|Cf|Cl|Cm|Cn|Co|Cr|Cs|Cu|C|Db|Ds|Dy|Er|Es|Eu|Fe|Fm|Fr|F|Ga|Gd|Ge|He|Hf|Hg|Ho|Hs|H|In|Ir|I|Kr|K|La|Li|Lr|Lu|Md|Mg|Mn|Mo|Mt|Na|Nb|Nd|Ne|Ni|No|Np|N|Os|O|Pa|Pb|Pd|Pm|Po|Pr|Pt|Pu|P|Ra|Rb|Re|Rf|Rg|Rh|Rn|Ru|Sb|Sc|Se|Sg|Si|Sm|Sn|Sr|S|Ta|Tb|Tc|Te|Th|Ti|Tl|Tm|Uuh|Uuo|Uup|Uuq|Uus|Uut|U|V|W|Xe|Yb|Y|Zn|Zr)\d*)*))( ?(\d*[+-])? ?(\((s|l|g|aq)\))| \d+[+-]|[+-]?)))*))?)/g
 
 function forEachElement(selector, fn) {
-  var elements = document.querySelectorAll(selector);
-  for (var i = 0; i < elements.length; i++)
-    fn(elements[i], i);
+    var elements = document.querySelectorAll(selector);
+    for (var i = 0, l = elements.length; i < l; i++) {
+        fn(elements[i], i);
+    }   
 }
 
-forEachElement("p", function (el, i){
+function Token(name, sub) {
+    this.string = name;
+    this.subscript = sub;
+}
+
+function Compound() {
+    this.count = null;
+    this.tokens = [];
+}
+
+var fsm = {
+    state: 'outside',
+    transition: {
+        'outside': [
+            { pattern: /[[(A-Z]/, to: 'new token' },
+            { pattern: /\d/, to: 'count compound' }
+        ],
+        'count compound': [
+            { pattern: /[[(A-Z]/, to: 'new token' },
+            { pattern: /\d/, to: 'count compound' }
+        ],
+        'new token': [
+            { pattern: /[()A-Z[\]]/, to: 'new token' },
+            { pattern: /[a-z]/, to: 'continue token' },
+            { pattern: /\d/, to: 'count token' },
+            { pattern: /[+-]/, to: 'charge' },
+            { pattern: /\s/, to: 'suffix' }
+        ],
+        'continue token': [
+            { pattern: /[()A-Z[\]]/, to: 'new token' },
+            { pattern: /[a-z]/, to: 'continue token' },
+            { pattern: /\d/, to: 'count token' },
+            { pattern: /[+-]/, to: 'charge' },
+            { pattern: /\s/, to: 'suffix' }
+        ],
+        'count token': [
+            { pattern: /[()A-Z[\]]/, to: 'new token' },
+            { pattern: /\d/, to: 'count token' },
+            { pattern: /[+-]/, to: 'charge' },
+            { pattern: /\s/, to: 'suffix' }
+        ],
+        'charge': [
+            { pattern: /\s/, to: 'suffix no charge' }
+        ],
+        'suffix': [ // This manually manages state
+            { pattern: /[\s\S]/, to: 'suffix' },
+            { pattern: /(?!)/, to: 'outside' }
+        ],
+        'suffix no charge': [ // This manually manages state
+            { pattern: /[\s\S]/, to: 'suffix no charge' },
+            { pattern: /(?!)/, to: 'outside' }
+        ]
+    }
+}
+
+function parse(text) {
+    var equation = [];
+    var comp = undefined;
+    var current_token = undefined;
+    var number = /\d/;
+    var whitespace = /\s/;
+    var count = "";
+    for (var i = 0; i < text.length; i++) {
+        var symbol = text[i];
+        equation.push(symbol);
+    }
+    console.log(equation);
+}
+
+forEachElement("p", function (el, i) {
     var list = el.innerText.match(chemRegex);
     for (var i = 0; i < list.length; i++) {
-        console.log(list[i]);
+        parse(list[i]);
     }
 });
-
