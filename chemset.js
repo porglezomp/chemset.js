@@ -34,31 +34,44 @@ var fsm = {
             { pattern: /[a-z]/, to: 'continue token' },
             { pattern: /\d/, to: 'count token' },
             { pattern: /[+-]/, to: 'charge' },
-            { pattern: /\s/, to: 'suffix' }
+            { pattern: /\s/, to: 'charge wait' }
         ],
         'continue token': [
             { pattern: /[()A-Z[\]]/, to: 'new token' },
             { pattern: /[a-z]/, to: 'continue token' },
             { pattern: /\d/, to: 'count token' },
             { pattern: /[+-]/, to: 'charge' },
-            { pattern: /\s/, to: 'suffix' }
+            { pattern: /\s/, to: 'charge wait' }
         ],
         'count token': [
             { pattern: /[()A-Z[\]]/, to: 'new token' },
             { pattern: /\d/, to: 'count token' },
             { pattern: /[+-]/, to: 'charge' },
-            { pattern: /\s/, to: 'suffix' }
+            { pattern: /\s/, to: 'charge wait' }
         ],
         'charge': [
-            { pattern: /\s/, to: 'suffix no charge' }
+            { pattern: /\s/, to: 'state wait' }
         ],
-        'suffix': [ // This manually manages state
-            { pattern: /[\s\S]/, to: 'suffix' },
-            { pattern: /(?!)/, to: 'outside' }
+        'charge wait': [
+            { pattern: /\s/, to: 'charge wait' },
+            { pattern: /\d/, to: 'charge count' },
+            { pattern: /\(/, to: 'state' },
+            { pattern: /\+/, to: 'outside' }
         ],
-        'suffix no charge': [ // This manually manages state
-            { pattern: /[\s\S]/, to: 'suffix no charge' },
-            { pattern: /(?!)/, to: 'outside' }
+        'charge count': [
+            { pattern: /\d/, to: 'charge count' },
+            { pattern: /[+-]/, to: 'charge end' }
+        ],
+        'charge end': [
+            { pattern: /\s/, to: 'state wait' }
+        ],
+        'state wait': [
+            { pattern: /\(/, to: 'state' },
+            { pattern: /\+/, to: 'outside' },    
+        ],
+        'state': [
+            { pattern: /(a|q|s|l)/, to: 'state' },
+            { pattern: /\)/, to: outside }
         ]
     }
 }
