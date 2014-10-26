@@ -129,15 +129,15 @@ function parse(text) {
             state2 !== 'outside') {
             comp = new Compound();
             if (state2 !== 'count_compound') {
-                comp.count = undefined;
+                comp.count_compound = undefined;
             }
         }
         if (state2 === 'count_compound') {
             // Entering count_compound
             if (state1 === 'outside') {
-                fsm.tmp.count = character;
+                fsm.tmp.count_compound = character;
             } else {
-                fsm.tmp.count += character;
+                fsm.tmp.count_compound += character;
             }   
         }
        // Add the digit into the token count
@@ -157,7 +157,7 @@ function parse(text) {
         // Leaving 'count_compound'
         if (state1 === 'count_compound' &&
             state2 !== 'count_compound') {
-            comp.count = parseInt(fsm.tmp.count);
+            comp.count = parseInt(fsm.tmp.count_compound);
         }
         // Entering 'outside'
         if (state2 === 'outside' &&
@@ -226,7 +226,7 @@ function parse(text) {
     return fsm.equation;
 }
 
-function format_paragraph(el, i) {
+function format_paragraph(el) {
     // Remove ' + ' from a string
     var stripPlus = function (string) {
         return string.substring(0, string.length - 3);
@@ -248,6 +248,9 @@ function format_paragraph(el, i) {
                             'class="chem-hidden">--></span></span> ';
                     } else {
                         var l3 = compound.tokens.length;
+                        if(compound.count) {
+                            res_string += compound.count;
+                        }
                         for (var t = 0; t < l3; t++) {
                             var token = compound.tokens[t];
                             res_string += token.string
@@ -282,14 +285,10 @@ function format_paragraph(el, i) {
                 }
                 res_string = stripPlus(res_string);
                 res_string += '</span>';
-                console.log(res_string);
-                // console.log(el.innerText.replace(list[i],
-                //                                  res_string));
                 el.innerHTML = el.innerHTML.replace(htmlEscape(list[i]),
                                                       res_string);
 
             }
-            // console.log(result);
         }
     }
 }
@@ -305,7 +304,7 @@ ready(function () {
         '.chem-state, .chem-sub { bottom: -0.25em; }\n' +
         '.chem-charge { top: -0.5em; }'
     );
-    forEachElement("p", format_paragraph);
+    format_paragraph(document.querySelectorAll("body")[0]);
 });
 
 function htmlEscape(str) {
@@ -326,15 +325,6 @@ function ready(fn) {
         fn();
     });
   }
-}
-
-// Run a function for every element in the page
-// that has a given CSS selector
-function forEachElement(selector, fn) {
-    var elements = document.querySelectorAll(selector);
-    for (var i = 0, l = elements.length; i < l; i++) {
-        fn(elements[i], i);
-    }   
 }
 
 function insertCSS(css) {

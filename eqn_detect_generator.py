@@ -70,14 +70,14 @@ match_token_num = r"({elements}\d+)".format(
 # and then an optional subscript
 # Note: This will accept malformed strings like:
 # ((((OH)2, it's the parser's job to reject this
-match_group = r"(\(({or_elements}\d*|\(|\)\d*)\)\d*)".format(
+match_group = r"(\(((({or_elements})\d*)|\(|(\)\d*))+\)\d*)".format(
     or_elements=or_elements
 )
 
 # Match a single ion or molecule,
 # for example: H2SO4, CO2, H2O, etc.
-match_formula = (r"(\d*(({token}+)|({token}*){group}({token}*)" +
-                 r"){suffix})").format(
+match_formula = (r"(\d*((({token}*){group}({token}*))|({token}+))" +
+                 r"{suffix})").format(
 # ({numbered_token}+[+-])
     numbered_token=match_token_num,
     token=match_token,
