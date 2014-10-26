@@ -1,4 +1,17 @@
+from __future__ import print_function
+import sys
+
+# Do not change this
 debug = False
+
+# Set debug to True if passed -d on the command line
+if len(sys.argv) > 1:
+    if sys.argv[1] == "-d":
+        debug = True
+    else:
+        print("I don't know what '{}' means.".format(sys.argv[1]))
+        print("Did you mean '-d' (debug)?")
+        sys.exit(1)
 
 # Load all of the element names from the CSV
 elements = []
@@ -92,4 +105,4 @@ if debug:
     print("Match formula:", match_formula, sep="\n")
     print("Match formulas:", match_formulas, sep="\n")
     print()
-print(regex)
+print("var chemRegex = " + regex)
