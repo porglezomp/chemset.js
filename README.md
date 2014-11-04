@@ -8,7 +8,7 @@ Installation
 
 The simplest way to install is to include a script tag linking to the code
 ```html
-<script src="https://github.com/porglezomp/chemset.js/releases/download/v0.6/chemset.min.js"></script>
+<script src="https://github.com/porglezomp/chemset.js/releases/download/v0.7.1/chemset.min.js"></script>
 ```
 
 Usage
