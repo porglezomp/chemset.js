@@ -33,11 +33,58 @@ elements = [e for _, _, e in elements]
 if debug:
     print("Elements:", " ".join(elements), sep="\n")
     # Shorten for readability while testing
-    elements = elements[:4]
+    # elements = elements[:4]
+    print("Initial length is", len("|".join(elements)))
 
+# Produce a "stemmed" dictionary of all the element first letters
+# with arrays of suffixes
+element_dict = {}
+for item in elements:
+    key = item[0]
+    offset = 1
+    # Treat Uu differently, since all those elements start with it
+    if "Uu" in item:
+        key = "Uu"
+        offset = 2
+    # Add the suffix to the list if it exists, or create the list if it doesn't
+    if key in element_dict:
+        element_dict[key].append(item[offset:])
+    else:
+        element_dict[key] = list(item[offset:])
+
+# Turn the dictionary back into an element regex
+elements = []
+for key in element_dict.keys():
+    suffixes = element_dict[key]
+    optional = False
+    if "" in suffixes:
+        optional = True
+        suffixes.remove("")
+    if debug:
+        print(key, suffixes)
+    string = key
+    if len(suffixes) == 0:
+        pass
+    elif len(suffixes) == 1:
+        if optional:
+            string += "|" + key + suffixes[0]
+        else:
+            string += suffixes[0]
+    else:
+        string = "{start}[{inner}]{question}".format(
+            start=key,
+            question=("?" if optional else ""),
+            inner="".join(suffixes)
+        )
+    elements.append(string)
+
+ 
 # Build a regex for the elements
 or_elements = "|".join(elements)
 match_elements = "(" + or_elements + ")"
+
+if debug:
+    print("Compressed length is", len(or_elements))
 
 # Match the charge: H+, OH-, SO4 2+, etc.
 match_charge = r"(\d*[+-])"
@@ -91,7 +138,7 @@ match_formulas = r"(?:{formula}( ??\+ ??{formula})*)".format(
 )
 
 # Match chemicals and chemical equations
-regex = r"/({formulas}(?: ??-+> ??{formulas})?)/g".format(
+regex = r"/({formulas}(?: ??(<?-+>|<=+>|=) ??{formulas})?)(?=\W)/g".format(
     formulas=match_formulas
 )
 

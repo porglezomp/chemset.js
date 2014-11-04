@@ -21,7 +21,8 @@ var fsm = {
             { pattern: /\d/, to: 'count_compound' },
             { pattern: /\s/, to: 'outside' },
             { pattern: /\+/, to: 'outside' },
-            { pattern: /-/, to: 'becomes' },
+            { pattern: /-/, to: 'yields' },
+            { pattern: /</, to: 'double' },
             { pattern: /\0/, to: 'outside' }
         ],
         'count_compound': [
@@ -60,7 +61,9 @@ var fsm = {
             { pattern: /\d/, to: 'charge_count' },
             { pattern: /\(/, to: 'state' },
             { pattern: /\+/, to: 'outside' },
-            { pattern: /\0/, to: 'outside' }
+            { pattern: /\0/, to: 'outside' },
+            { pattern: /</, to: 'double' },
+            { pattern: /=/, to: 'titration' }
         ],
         'charge_count': [
             { pattern: /\d/, to: 'charge_count' },
@@ -73,15 +76,32 @@ var fsm = {
         'state_wait': [
             { pattern: /\(/, to: 'state' },
             { pattern: /\+/, to: 'outside' },
-            { pattern: /\0/, to: 'outside' }
+            { pattern: /\0/, to: 'outside' },
+            { pattern: /</, to: 'double' },
+            { pattern: /=/, to: 'titration' }
         ],
         'state': [
             { pattern: /(a|q|s|l)/, to: 'state' },
             { pattern: /\)/, to: 'outside' }
         ],
-        'becomes': [
-            { pattern: /-/, to: 'becomes' },
+        'yields': [
+            { pattern: /-/, to: 'yields' },
             { pattern: />/, to: 'outside' }
+        ],
+        'double': [
+            { pattern: /-/, to: 'bidirectional' },
+            { pattern: /=/, to: 'equilibrium' }
+        ],
+        'bidirectional': [
+            { pattern: /-/, to: 'bidirectional' },
+            { pattern: />/, to: 'outside' }
+        ],
+        'equilibrium': [
+            { pattern: /=/, to: 'equilibrium' },
+            { pattern: />/, to: 'outside' }
+        ],
+        'titration': [
+            { pattern: /\s/, to: 'outside' }
         ],
         'error': []
     },
@@ -122,7 +142,8 @@ function parse(text) {
 
         // Fail on error
         if (state2 === 'error') {
-            return "ERROR at character " + i;
+            return "ERROR at character " + i + ". In " + state1 +
+                ' and encountered character "' + character + '"';
         }
         // Leaving 'outside'
         if (state1 === 'outside' &&
@@ -195,10 +216,26 @@ function parse(text) {
                 }
             }
         }
-        // Entering 'becomes' (the -->)
-        if (state2 === 'becomes' &&
-            state1 !== 'becomes') {
+
+        // Leaving 'yields' (the -->)
+        if (state1 === 'yields' &&
+            state2 !== 'yields') {
             fsm.equation.push("-->");
+        }
+        // Leaving 'titration' (the =)
+        else if (state1 === 'titration' &&
+                 state2 !== 'titration') {
+            fsm.equation.push("=");
+        }
+        // Leaving 'bidirectional' (the <-->)
+        else if (state1 === 'bidirectional' &&
+                 state2 !== 'bidirectional') {
+            fsm.equation.push("<-->");
+        }
+        // Leaving 'equilibrium' (the <==>)
+        else if (state1 === 'equilibrium' &&
+                 state2 !== 'equilibrium') {
+            fsm.equation.push("<==>");
         }
 
         // Time to save any potential temporary tokens
@@ -226,7 +263,7 @@ function parse(text) {
     return fsm.equation;
 }
 
-function format_paragraph(el) {
+function render_chem(el) {
     // Remove ' + ' from a string
     var stripPlus = function (string) {
         return string.substring(0, string.length - 3);
@@ -236,6 +273,11 @@ function format_paragraph(el) {
     for (var i = 0; i < l; i++) {
         if (list[i].length > 1) {
             var result = parse(list[i]);
+            console.log(result);
+            if (typeof(result) === "string") {
+                console.log(result + ": " + list[i]);
+                continue;
+            }
             // If the result contains anything
             if (result.length > 0) {
                 res_string = '<span class="chemset">';
@@ -246,6 +288,17 @@ function format_paragraph(el) {
                         res_string = stripPlus(res_string);
                         res_string += ' <span class="chem-arrow"><span ' +
                             'class="chem-hidden">--></span></span> ';
+                    } else if (compound === '<-->') {
+                        res_string = stripPlus(res_string);
+                        res_string += ' <span class="chem-double-arrow">' +
+                            '<span class="chem-hidden"><--></span></span> ';
+                    } else if (compound === '<==>') {
+                        res_string = stripPlus(res_string);
+                        res_string += ' <span class="chem-equilibrium">' +
+                            '<span class="chem-hidden"><==></span></span> ';
+                    } else if (compound === '=') {
+                        res_string = stripPlus(res_string);
+                        res_string += ' = ';
                     } else {
                         var l3 = compound.tokens.length;
                         if(compound.count) {
@@ -299,12 +352,14 @@ ready(function () {
         '.chem-negative:before { font-weight: bold; content: "\u2013"; }\n' +
         '.chem-positive:before { font-weight: bold; content: "+"; }\n' +
         '.chem-arrow:before { content: "\u27F6"; }\n' +
+        '.chem-double-arrow:before { content: "\u21C6"; }\n' +
+        '.chem-equilibrium:before { content: "\u21CC"; }\n' +
         '.chem-state, .chem-charge, .chem-sub { font-size: 75%; ' +
         'line-height: 0; position: relative; vertical-align: baseline; } \n' +
         '.chem-state, .chem-sub { bottom: -0.25em; }\n' +
         '.chem-charge { top: -0.5em; }'
     );
-    format_paragraph(document.querySelectorAll("body")[0]);
+    render_chem(document.querySelectorAll("body")[0]);
 });
 
 function htmlEscape(str) {
