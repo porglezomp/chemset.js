@@ -348,15 +348,15 @@ function render_chem(el) {
 
 ready(function () {
     insertCSS(
-        '.chem-hidden { font-size: 0; }\n' +
-        '.chem-negative:before { font-weight: bold; content: "\u2013"; }\n' +
-        '.chem-positive:before { font-weight: bold; content: "+"; }\n' +
-        '.chem-arrow:before { content: "\u27F6"; }\n' +
-        '.chem-double-arrow:before { content: "\u21C6"; }\n' +
-        '.chem-equilibrium:before { content: "\u21CC"; }\n' +
+        '.chem-hidden { font-size: 0; }' +
+        '.chem-negative:before { font-weight: bold; content: "\u2013"; }' +
+        '.chem-positive:before { font-weight: bold; content: "+"; }' +
+        '.chem-arrow:before { content: "\u27F6"; }' +
+        '.chem-double-arrow:before { content: "\u21C6"; }' +
+        '.chem-equilibrium:before { content: "\u21CC"; }' +
         '.chem-state, .chem-charge, .chem-sub { font-size: 75%; ' +
-        'line-height: 0; position: relative; vertical-align: baseline; } \n' +
-        '.chem-state, .chem-sub { bottom: -0.25em; }\n' +
+        'line-height: 0; position: relative; vertical-align: baseline; }' +
+        '.chem-state, .chem-sub { bottom: -0.25em; }' +
         '.chem-charge { top: -0.5em; }'
     );
     render_chem(document.querySelectorAll("body")[0]);
